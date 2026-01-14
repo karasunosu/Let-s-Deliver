@@ -53,11 +53,13 @@ public class Driver : MonoBehaviour
         transform.Rotate(0, 0, steerAmount);
     }
 
+    // Booster
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Boost"))
         {
             currentSpeed = boostSpeed;
+            Destroy(collision.gameObject);
         }
     }
 
