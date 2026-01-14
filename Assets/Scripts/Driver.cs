@@ -6,6 +6,7 @@ public class Driver : MonoBehaviour
     [SerializeField] float baseSpeed = 5f;
     [SerializeField] float baseSteer = 5f;
     [SerializeField] float boostSpeed = 10f;
+    [SerializeField] ParticleSystem boostParticle;
     
     float currentSpeed = 5f;
 
@@ -58,6 +59,7 @@ public class Driver : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Boost"))
         {
+            boostParticle.Play();
             currentSpeed = boostSpeed;
             Destroy(collision.gameObject);
         }
@@ -65,6 +67,7 @@ public class Driver : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        boostParticle.Stop();
         currentSpeed = baseSpeed;
     }
 }
