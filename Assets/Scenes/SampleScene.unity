@@ -795,6 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Driver
   baseSpeed: 7.5
   baseSteer: 150
+  boostSpeed: 11
 --- !u!1001 &1659415788
 PrefabInstance:
   m_ObjectHideFlags: 0

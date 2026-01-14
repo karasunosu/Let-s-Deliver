@@ -5,6 +5,14 @@ public class Driver : MonoBehaviour
 {
     [SerializeField] float baseSpeed = 5f;
     [SerializeField] float baseSteer = 5f;
+    [SerializeField] float boostSpeed = 10f;
+    
+    float currentSpeed = 5f;
+
+    void Start()
+    {
+        currentSpeed = baseSpeed;
+    }
 
     void Update() {
         PlayerControl();
@@ -38,11 +46,23 @@ public class Driver : MonoBehaviour
         }
 
 
-        moveAmount = move * baseSpeed * Time.deltaTime;
+        moveAmount = move * currentSpeed * Time.deltaTime;
         steerAmount = steer * baseSteer * Time.deltaTime;
 
         transform.Translate(0, moveAmount, 0);
         transform.Rotate(0, 0, steerAmount);
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Boost"))
+        {
+            currentSpeed = boostSpeed;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        currentSpeed = baseSpeed;
+    }
 }
